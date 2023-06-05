@@ -1,3 +1,40 @@
 {
-  "searchQuery": "SHAFT_Engine"
+  "packages": {
+    "KSA": {
+      "currency": "SAR/month",
+      "LITE": {
+        "price": 15
+      },
+      "CLASSIC": {
+        "price": 25
+      },
+      "PREMIUM": {
+        "price": 60
+      }
+    },
+    "BAHRAIN": {
+      "currency": "BHD/month",
+      "LITE": {
+        "price": 2
+      },
+      "CLASSIC": {
+        "price": 3
+      },
+      "PREMIUM": {
+        "price": 6
+      }
+    },
+    "KUWAIT": {
+      "currency": "KWD/month",
+      "LITE": {
+        "price": 1.2
+      },
+      "CLASSIC": {
+        "price": 2.5
+      },
+      "PREMIUM": {
+        "price": 4.8
+      }
+    }
+  }
 }

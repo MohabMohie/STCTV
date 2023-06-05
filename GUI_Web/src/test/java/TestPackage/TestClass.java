@@ -4,48 +4,48 @@ import com.shaft.driver.SHAFT;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
-import io.qameta.allure.TmsLink;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.Home;
+import pages.Subscribe;
 
 public class TestClass {
-    private  SHAFT.GUI.WebDriver driver;
-    private SHAFT.TestData.JSON testData;
+    private final ThreadLocal<SHAFT.GUI.WebDriver> driver = new ThreadLocal<>();
 
-    @Epic("SHAFT Web GUI Template")
-    @Story("Google Basic Validations")
-    @TmsLink("TC-001")
-    @Description("Given I am on the Home page,\nThen the browser title should be 'Google'.")
-    @Test(description = "Check that Home Page Title is correct.")
-    public void checkHomePageTitleIsCorrect() {
-        new Home(driver).verifyBrowserTitleIsCorrect();
+    @Epic("STC TV Web GUI Sample")
+    @Story("Validate Package Information")
+    @Description("Given I am on the Subscriptions page,\nThen the subscription packages information should be correct.")
+    @Test(description = "Check package information for KSA.")
+    public void checkPackageInformationForKSA() {
+        new Subscribe(driver).navigate(Subscribe.Locale.KSA)
+                .verifySubscriptionPackageInformation();
     }
 
-    @Epic("SHAFT Web GUI Template")
-    @Story("Google Basic Validations")@TmsLink("TC-002")
-    @Description("Given I am on the Home page,\nWhen I search for a valid query,\nThen the result stats will show some data (will not be empty).")
-    @Test(description = "Check that Result Stats is not empty after searching for a query.")
-    public void checkResultStatsIsNotEmptyAfterSearchingForAQuery() {
-        new Home(driver).searchForQuery(testData.getTestData("searchQuery"))
-                .assertResultStatsIsNotEmpty();
+    @Epic("STC TV Web GUI Sample")
+    @Story("Validate Package Information")
+    @Description("Given I am on the Subscriptions page,\nThen the subscription packages information should be correct.")
+    @Test(description = "Check package information for BAHRAIN.")
+    public void checkPackageInformationForBahrain() {
+        new Subscribe(driver).navigate(Subscribe.Locale.BAHRAIN)
+                .verifySubscriptionPackageInformation();
     }
 
-    @BeforeClass(description = "Setup Test Data.")
-    public void beforeClass(){
-        testData = new SHAFT.TestData.JSON("simpleJSON.json");
+    @Epic("STC TV Web GUI Sample")
+    @Story("Validate Package Information")
+    @Description("Given I am on the Subscriptions page,\nThen the subscription packages information should be correct.")
+    @Test(description = "Check package information for KUWAIT.")
+    public void checkPackageInformationForKuwait() {
+        new Subscribe(driver).navigate(Subscribe.Locale.KUWAIT)
+                .verifySubscriptionPackageInformation();
     }
 
     @BeforeMethod(description = "Setup Browser instance.")
     public void beforeMethod() {
-        driver = new SHAFT.GUI.WebDriver();
-        new Home(driver).navigate();
+        driver.set(new SHAFT.GUI.WebDriver());
     }
 
     @AfterMethod(description = "Teardown Browser instance.")
     public void afterMethod() {
-        driver.quit();
+        driver.get().quit();
     }
 }
